@@ -133,16 +133,24 @@
   </header>
 
   <!-- HOME -->
-  <section id="home" class="page">
-    <div class="card hero">
-      <h2>Hello — I'm Lynze Paul Z. Cabalona</h2>
-      <p>I am a BSIT student passionate about technology, design, and continuous learning. I aim to become a skilled programmer and digital creator by growing step-by-step.</p>
-      <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
-        <a class="btn-link" href="#profile" onclick="showPage('profile'); return false;">View Profile</a>
-        <a class="btn-link" href="#resume" onclick="showPage('resume'); return false;">View Résumé</a>
-      </div>
+<section id="home" class="page">
+  <div class="card hero" style="text-align:center;">
+    
+    <!-- Profile Picture -->
+    <img src="assets/profile-pic.jpg" 
+         alt="Lynze Paul Z. Cabalona" 
+         style="width:180px; height:180px; border-radius:50%; object-fit:cover; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,242,255,0.3);">
+    
+    <h2>Hello — I'm Lynze Paul Z. Cabalona</h2>
+    <p>I am a BSIT student passionate about technology, design, and continuous learning. I aim to become a skilled programmer and digital creator by growing step-by-step.</p>
+    
+    <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+      <a class="btn-link" href="#profile" onclick="showPage('profile'); return false;">View Profile</a>
+      <a class="btn-link" href="#resume" onclick="showPage('resume'); return false;">View Résumé</a>
     </div>
-  </section>
+  </div>
+</section>
+
 
 <!-- PROFILE -->
 <section id="profile" class="page hidden" style="display:none;">
@@ -163,18 +171,30 @@
 </section>
 
 
-  <!-- RÉSUMÉ -->
-  <section id="resume" class="page hidden" style="display:none;">
-    <div class="card">
-      <h2>Résumé</h2>
-      <p><strong>Career Objective:</strong> To apply creativity and technology skills while pursuing growth in programming and multimedia design.</p>
-      <p><strong>Education:</strong> BSIT – Bachelor of Science in Information Technology</p>
-      <div style="margin-top:24px;">
-        <a class="btn-link" href="assets/Chronological Resume.pdf" target="_blank">Download Chronological Résumé</a>
-        <a class="btn-link" href="assets/Functional Resume.pdf" target="_blank">Download Functional Résumé</a>
-      </div>
+ <!-- RÉSUMÉ -->
+<section id="resume" class="page hidden" style="display:none;">
+  <div class="card" style="text-align:center;">
+    <h2>Résumé</h2>
+    <p>Preview of my résumés. Click the buttons below to view the full documents:</p>
+    
+    <!-- Chronological Résumé Preview -->
+    <img src="assets/Chronological-Resume-Screenshot.jpg" 
+         alt="Chronological Résumé Preview" 
+         style="width:100%; max-width:600px; border-radius:8px; box-shadow:0 4px 16px rgba(0,242,255,0.3); margin-bottom:10px;">
+    <div style="margin-bottom:20px;">
+      <a class="btn-link" href="assets/Chronological Resume.pdf" target="_blank">View Chronological Résumé</a>
     </div>
-  </section>
+    
+    <!-- Functional Résumé Preview -->
+    <img src="assets/Functional-Resume-Screenshot.jpg" 
+         alt="Functional Résumé Preview" 
+         style="width:100%; max-width:600px; border-radius:8px; box-shadow:0 4px 16px rgba(0,242,255,0.3); margin-bottom:10px;">
+    <div>
+      <a class="btn-link" href="assets/Functional Resume.pdf" target="_blank">View Functional Résumé</a>
+    </div>
+  </div>
+</section>
+
 
   <!-- APPLICATION -->
   <section id="application" class="page hidden" style="display:none;">
@@ -237,5 +257,6 @@
   </script>
 </body>
 </html>
+
 
 
