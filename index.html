@@ -9,31 +9,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
     html, body { height: 100%; }
     body {
       background: linear-gradient(135deg, #0b0b0c, #1a1a23, #0b0b0c);
       color: #e8e8e8;
-      line-height: 1.5;
-      padding-bottom: 40px;
+      line-height: 1.6;
+      padding-bottom: 60px;
     }
 
+    /* HEADER */
     header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(8px);
+      z-index: 100;
+      backdrop-filter: blur(10px);
       background: rgba(11,11,12,0.85);
-      border-bottom: 1px solid rgba(0,242,255,0.2);
+      border-bottom: 1px solid rgba(0,242,255,0.3);
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 16px 28px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      animation: fadeDown 0.8s ease forwards;
     }
-    header h1 { font-size: 20px; font-weight: 600; color: #00f2ff; }
-    nav { display: flex; align-items: center; }
+
+    @keyframes fadeDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    header h1 { font-size: 22px; font-weight: 600; color: #00f2ff; }
     nav a {
-      color: #e8e8e8;
+      color: #cfd7db;
       text-decoration: none;
       margin-left: 18px;
       font-weight: 500;
@@ -42,68 +50,85 @@
       font-size: 14px;
       transition: all 0.2s ease;
     }
-    nav a:hover { background: rgba(0,242,255,0.1); color: #00f2ff; }
+    nav a:hover { background: rgba(0,242,255,0.15); color: #00f2ff; }
     nav a.active { border-bottom: 2px solid #00f2ff; color: #00f2ff; }
 
-    section { padding: 48px 20px; max-width: 1000px; margin: 18px auto; min-height: calc(100vh - 140px); }
+    /* CARD & SECTION */
+    section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; min-height: calc(100vh - 140px); }
     .card {
-      background: rgba(19,19,22,0.85);
-      border-radius: 14px;
-      padding: 26px;
+      background: rgba(19,19,22,0.9);
+      border-radius: 16px;
+      padding: 36px;
       box-shadow: 0 0 18px rgba(0,242,255,0.2), 0 0 32px rgba(0,242,255,0.1);
       border: 1px solid rgba(0,242,255,0.3);
       opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease-out;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
     }
     .card.visible { opacity: 1; transform: translateY(0); }
 
-    .hero h2 { font-size: 34px; margin-bottom: 10px; color: #00f2ff; }
-    .hero p { color: #cfd7db; font-size: 16px; margin-top: 10px; }
+    .hero h2 { font-size: 36px; color: #00f2ff; margin-bottom: 10px; }
+    .hero p { color: #cfd7db; font-size: 17px; }
 
+    /* BUTTONS */
     a.btn-link, button {
       display: inline-block;
-      padding: 10px 16px;
+      padding: 10px 18px;
       border-radius: 8px;
       text-decoration: none;
       background: linear-gradient(90deg, #00f2ff, #00ffa1);
       color: #0b0b0c;
       font-weight: 600;
-      box-shadow: 0 0 12px rgba(0,242,255,0.5);
-      transition: all 0.2s ease;
+      box-shadow: 0 0 14px rgba(0,242,255,0.4);
+      transition: all 0.25s ease;
     }
     a.btn-link:hover, button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 22px rgba(0,242,255,0.7);
+      box-shadow: 0 0 26px rgba(0,242,255,0.7);
     }
 
-    #home { background: rgba(11,11,12,0.9); }
-    #profile { background: rgba(20,20,28,0.85); }
-    #resume { background: rgba(15,15,20,0.85); }
-    #recommendation { background: rgba(18,18,22,0.85); }
-    #application { background: rgba(20,20,25,0.85); }
+    /* FOOTER */
+    footer {
+      text-align:center; color:#e8e8e8; padding:20px 10px; opacity:0.8; margin-top:40px;
+      border-top: 1px solid rgba(0,242,255,0.15);
+    }
 
-    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 18px; margin-top: 22px; }
+    /* SCROLL-UP BUTTON */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      display: none;
+      background: linear-gradient(90deg, #00f2ff, #00ffa1);
+      color: #0b0b0c;
+      border: none;
+      border-radius: 50%;
+      padding: 12px 14px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0,242,255,0.6);
+      transition: all 0.3s ease;
+    }
+    #scrollTopBtn:hover { transform: scale(1.1); }
 
-    footer{ text-align:center; color:#e8e8e8; padding:20px 10px; opacity:0.85; margin-top:40px; }
-
+    /* RESPONSIVE */
     @media (max-width:720px){
-      header{ padding:12px 14px; flex-direction: column; align-items: flex-start;}
-      .hero h2{ font-size:28px; }
-      nav a{ margin-left:0; margin-top:6px; font-size:13px; padding:6px 8px; }
-      section{ padding:28px 14px; }
+      header { flex-direction: column; align-items: flex-start; padding: 14px; }
+      .hero h2 { font-size: 28px; }
+      nav a { margin: 4px 0; font-size: 13px; padding: 6px 8px; }
+      section { padding: 36px 14px; }
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Lynze Paul Z. Cabalona</h1>
     <nav>
       <a href="#home" onclick="showPage('home'); return false;" id="nav-home">Home</a>
-      <a href="#profile" onclick="showPage('profile'); return false;" id="nav-profile">Professional Profile</a>
-      <a href="#recommendation" onclick="showPage('recommendation'); return false;" id="nav-recommendation">Recommendation</a>
+      <a href="#profile" onclick="showPage('profile'); return false;" id="nav-profile">Profile</a>
       <a href="#resume" onclick="showPage('resume'); return false;" id="nav-resume">Résumé</a>
-      <a href="#application" onclick="showPage('application'); return false;" id="nav-application">Application Letter</a>
+      <a href="#application" onclick="showPage('application'); return false;" id="nav-application">Application</a>
+      <a href="#recommendation" onclick="showPage('recommendation'); return false;" id="nav-recommendation">Recommendation</a>
     </nav>
   </header>
 
@@ -111,7 +136,7 @@
   <section id="home" class="page">
     <div class="card hero">
       <h2>Hello — I'm Lynze Paul Z. Cabalona</h2>
-      <p>I am a BSIT college student exploring different areas in programming. My goal is to grow step-by-step until I become a successful programmer.</p>
+      <p>I am a BSIT student passionate about technology, design, and continuous learning. I aim to become a skilled programmer and digital creator by growing step-by-step.</p>
       <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
         <a class="btn-link" href="#profile" onclick="showPage('profile'); return false;">View Profile</a>
         <a class="btn-link" href="#resume" onclick="showPage('resume'); return false;">View Résumé</a>
@@ -119,168 +144,90 @@
     </div>
   </section>
 
-  <!-- PROFESSIONAL PROFILE -->
+  <!-- PROFILE -->
   <section id="profile" class="page hidden" style="display:none;">
-    <div class="card" style="max-width:820px; margin:auto; padding:36px;">
+    <div class="card">
       <h2>Professional Profile</h2>
-      <p>I am exploring different fields in programming and technology. My goal is to gain experience, build skills step-by-step, and grow into a successful professional in tech.</p>
+      <p>I’m exploring programming and digital design tools to strengthen my technical and creative skills. My goal is to blend functionality with creativity to make meaningful digital solutions.</p>
       <div style="margin-top:18px;">
-        <h3>LinkedIn Profile</h3>
-        <p style="margin-top:8px; color:#cfd7db">View my professional profile on LinkedIn.</p>
-        <a class="btn-link" href="https://www.linkedin.com/in/lynze-paul-cabalona-4103b9335/" target="_blank">Visit LinkedIn Profile</a>
-      </div>
-
-      <!-- Skill Icons -->
-      <div style="display:flex; gap:24px; margin-top:20px; justify-content:center; flex-wrap:wrap;">
-        <!-- Canva -->
-        <div style="text-align:center;">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="#00f2ff" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" stroke="#00f2ff" stroke-width="2"/>
-            <text x="12" y="16" font-size="10" text-anchor="middle" fill="#0b0b0c" font-family="Poppins">C</text>
-          </svg>
-          <p>Canva</p>
-        </div>
-        <!-- CapCut -->
-        <div style="text-align:center;">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="#00ffa1" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="4" width="16" height="16" rx="4" stroke="#00ffa1" stroke-width="2"/>
-            <text x="12" y="16" font-size="10" text-anchor="middle" fill="#0b0b0c" font-family="Poppins">CC</text>
-          </svg>
-          <p>CapCut</p>
-        </div>
-        <!-- Figma -->
-        <div style="text-align:center;">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="#ff7f50" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="8" r="4" stroke="#ff7f50" stroke-width="2"/>
-            <circle cx="12" cy="16" r="4" stroke="#ff7f50" stroke-width="2"/>
-            <text x="12" y="12" font-size="8" text-anchor="middle" fill="#0b0b0c" font-family="Poppins">F</text>
-          </svg>
-          <p>Figma</p>
-        </div>
+        <h3>LinkedIn</h3>
+        <p>Visit my professional profile on LinkedIn:</p>
+        <a class="btn-link" href="https://www.linkedin.com/in/lynze-paul-cabalona-4103b9335/" target="_blank">Go to LinkedIn</a>
       </div>
     </div>
   </section>
 
-  <!-- RESUME -->
+  <!-- RÉSUMÉ -->
   <section id="resume" class="page hidden" style="display:none;">
-    <div class="card" style="max-width:820px; margin:auto; padding:36px;">
+    <div class="card">
       <h2>Résumé</h2>
-      <h3 style="margin-top:22px;">Chronological Résumé</h3>
-      <p style="margin-top:8px; line-height:1.7; color:#cfd7db;">
-        <strong>Career Objective:</strong> To build a strong foundation in creative and multimedia design while applying my skills in Canva, CapCut, and Figma.<br>
-        <strong>Education:</strong> BSIT – Bachelor of Science in Information Technology<br>
-        <strong>Experience:</strong> Canva designs, photo editing, logo creation, video editing with CapCut
-      </p>
-      <h3 style="margin-top:22px;">Functional Résumé</h3>
-      <p style="margin-top:8px; line-height:1.7; color:#cfd7db;">
-        <strong>Core Skills:</strong> Canva, Figma, CapCut, Creative Design<br>
-        <strong>Education:</strong> BSIT College Student
-      </p>
+      <p><strong>Career Objective:</strong> To apply creativity and technology skills while pursuing growth in programming and multimedia design.</p>
+      <p><strong>Education:</strong> BSIT – Bachelor of Science in Information Technology</p>
+      <div style="margin-top:24px;">
+        <a class="btn-link" href="assets/Chronological Resume.pdf" target="_blank">Download Chronological Résumé</a>
+        <a class="btn-link" href="assets/Functional Resume.pdf" target="_blank">Download Functional Résumé</a>
+      </div>
+    </div>
+  </section>
 
-      <!-- Project Cards -->
-      <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
-  <a class="btn-link" href="assets/Chronological Resume.pdf" target="_blank" rel="noopener">
-    Download Chronological Resume (PDF)
-  </a>
-
-  <a class="btn-link" href="assets/Functional Resume.pdf" target="_blank" rel="noopener">
-    Download Functional Resume (PDF)
-  </a>
-</div>
-      <div class="projects">
-        <div class="project-card">
-          <svg width="100%" height="120px" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-            <rect width="200" height="120" rx="10" fill="rgba(0,242,255,0.1)" stroke="#00f2ff" stroke-width="2"/>
-            <text x="100" y="60" fill="#00f2ff" font-size="16" text-anchor="middle" font-family="Poppins">Logo Design</text>
-          </svg>
-        </div>
-        <div class="project-card">
-          <svg width="100%" height="120px" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-            <rect width="200" height="120" rx="10" fill="rgba(0,242,255,0.1)" stroke="#00ffa1" stroke-width="2"/>
-            <text x="100" y="60" fill="#00ffa1" font-size="16" text-anchor="middle" font-family="Poppins">Video Editing</text>
-          </svg>
-        </div>
-        <div class="project-card">
-          <svg width="100%" height="120px" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-            <rect width="200" height="120" rx="10" fill="rgba(255,127,80,0.1)" stroke="#ff7f50" stroke-width="2"/>
-            <text x="100" y="60" fill="#ff7f50" font-size="16" text-anchor="middle" font-family="Poppins">Photo Editing</text>
-          </svg>
-        </div>
+  <!-- APPLICATION -->
+  <section id="application" class="page hidden" style="display:none;">
+    <div class="card" style="text-align:center;">
+      <h2>Letter of Application</h2>
+      <p>Click below to view or download my formal Letter of Application for the IT Intern position at Microsoft Company.</p>
+      <div style="margin-top:20px;">
+        <a class="btn-link" href="assets/Letter-of-Application.pdf" target="_blank">Open Letter of Application (PDF)</a>
       </div>
     </div>
   </section>
 
   <!-- RECOMMENDATION -->
   <section id="recommendation" class="page hidden" style="display:none;">
-    <div class="card" style="max-width:700px; margin:auto; padding:36px;">
-      <h2>Letter of Recommendation Request</h2>
-      <p>Placeholder PDF for Letter of Recommendation. Replace with real file when ready.</p>
-      <div style="margin-top:20px;">
-       <a class="btn-link" href="assets/Letter-of-Recommendation.pdf" target="_blank" rel="noopener">
-  Open Letter of Recommendation (PDF)
-</a>
-      </div>
+    <div class="card" style="text-align:center;">
+      <h2>Letter of Recommendation</h2>
+      <p>Click below to open my Letter of Recommendation.</p>
+      <a class="btn-link" href="assets/Letter-of-Recommendation.pdf" target="_blank">Open Letter of Recommendation</a>
     </div>
   </section>
 
- <!-- APPLICATION LETTER -->
-<section id="application" class="page hidden" style="display:none;">
-  <div class="card" style="max-width:700px; margin:auto; padding:36px; text-align:center;">
-    <h2>Letter of Application</h2>
-    <p style="margin-top:10px;">
-      Click below to open or download my formal Letter of Application for the
-      <strong>IT Intern position at Microsoft Company</strong>.
-    </p>
-    <div style="margin-top:24px;">
-      <a class="btn-link" href="assets/Letter-of-Application.pdf" target="_blank" rel="noopener">
-        Open Letter of Application (PDF)
-      </a>
-    </div>
-  </div>
-</section>
-
   <footer>© 2025 — Lynze Paul Z. Cabalona — Digital Portfolio</footer>
 
+  <button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
   <script>
-    const pages = ['home','profile','recommendation','resume','application'];
+    const pages = ['home','profile','resume','application','recommendation'];
 
     function hideAllPages() {
       pages.forEach(id => {
         const el = document.getElementById(id);
         if(!el) return;
         el.classList.add('hidden');
+        el.style.display = 'none';
       });
       document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
     }
 
     function showPage(pageId) {
-      if(!pages.includes(pageId)) pageId = 'home';
       hideAllPages();
       const page = document.getElementById(pageId);
       if(!page) return;
       page.classList.remove('hidden');
       page.style.display = 'block';
-      void page.offsetWidth;
       document.getElementById('nav-' + pageId).classList.add('active');
-
-      const cards = page.querySelectorAll('.card');
-      cards.forEach(c => setTimeout(() => c.classList.add('visible'), 100));
-
-      pages.forEach(id => {
-        if(id === pageId) return;
-        const p = document.getElementById(id);
-        if(!p) return;
-        setTimeout(() => { if(p.classList.contains('hidden')) p.style.display='none'; }, 260);
-      });
+      page.querySelectorAll('.card').forEach(c => setTimeout(() => c.classList.add('visible'), 150));
     }
 
     document.addEventListener('DOMContentLoaded', () => showPage('home'));
+
+    // Scroll to Top Button
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 400) scrollTopBtn.style.display = "block";
+      else scrollTopBtn.style.display = "none";
+    });
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   </script>
 </body>
 </html>
-
-
-
-
-
-
